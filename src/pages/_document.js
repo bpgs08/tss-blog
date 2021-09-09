@@ -31,7 +31,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html {...this.helmetHtmlAttrComponents}>
-        <Head>{this.helmetHeadComponents}</Head>
+        <Head>
+          {this.helmetHeadComponents}
+          <meta name="noreferrer" content="origin"></meta>
+        </Head>
         <body {...this.helmetBodyAttrComponents}>
           <Main />
           <NextScript />

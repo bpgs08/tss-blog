@@ -10,7 +10,6 @@ import styles from './PostCard.module.scss';
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
-
   const metadata = {};
 
   if (!excludeMetadata.includes('author')) {
@@ -36,6 +35,7 @@ const PostCard = ({ post, options = {} }) => {
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
         <a>
+          <img rel="noreferrer" src="https://www.theshadestore.com/blog/wp-content/uploads/2021/08/Zebra-1.jpg" />
           <h3
             className={styles.postCardTitle}
             dangerouslySetInnerHTML={{

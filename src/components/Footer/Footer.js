@@ -90,7 +90,7 @@ const Footer = () => {
       <Section className={styles.footerLegal}>
         <Container>
           <p>
-            &copy; {new Date().getFullYear()} {title}
+            COPYRIGHT &copy; {new Date().getFullYear()} | {title}
           </p>
         </Container>
       </Section>

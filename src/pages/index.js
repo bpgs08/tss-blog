@@ -3,7 +3,7 @@ import { getPaginatedPosts } from 'lib/posts';
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Layout from 'components/Layout';
-import Header from 'components/Header';
+// import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import PostCard from 'components/PostCard';
@@ -13,12 +13,13 @@ import styles from 'styles/pages/Home.module.scss';
 
 export default function Home({ posts, pagination }) {
   const { metadata = {} } = useSite();
-  const { title, description } = metadata;
+  // const { title, description } = metadata;
+  const { title } = metadata;
 
   return (
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
-      <Header>
+      {/* <Header>
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -32,7 +33,7 @@ export default function Home({ posts, pagination }) {
             __html: description,
           }}
         />
-      </Header>
+      </Header> */}
 
       <Section>
         <Container>

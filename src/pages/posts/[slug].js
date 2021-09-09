@@ -15,7 +15,7 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
+// import FeaturedImage from 'components/FeaturedImage';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -29,7 +29,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
     author,
     categories,
     modified,
-    featuredImage,
+    // featuredImage,
     isSticky = false,
   } = post;
 
@@ -73,17 +73,17 @@ export default function Post({ post, socialImage, relatedPosts }) {
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
       <Header>
-        {featuredImage && (
+        {/* {featuredImage && (
           <FeaturedImage
             {...featuredImage}
             src={featuredImage.sourceUrl}
             dangerouslySetInnerHTML={featuredImage.caption}
           />
-        )}
+        )} */}
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
-            __html: title,
+            __html: `${title}`,
           }}
         />
         <Metadata
