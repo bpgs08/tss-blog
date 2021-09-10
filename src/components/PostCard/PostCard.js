@@ -7,6 +7,8 @@ import Metadata from 'components/Metadata';
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 
+import styled from 'styled-components';
+
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
@@ -31,11 +33,10 @@ const PostCard = ({ post, options = {} }) => {
   }
 
   return (
-    <div className={postCardStyle}>
+    <article className={`${postCardStyle} post type-post entry`}>
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
-        <a>
-          <img rel="noreferrer" src="https://www.theshadestore.com/blog/wp-content/uploads/2021/08/Zebra-1.jpg" />
+        <a className="titleLink">
           <h3
             className={styles.postCardTitle}
             dangerouslySetInnerHTML={{
@@ -46,15 +47,42 @@ const PostCard = ({ post, options = {} }) => {
       </Link>
       <Metadata className={styles.postCardMetadata} {...metadata} />
       {excerpt && (
-        <div
-          className={styles.postCardContent}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeExcerpt(excerpt),
-          }}
-        />
+        <PostCardPictureExcerptContainer>
+          <a className="alignleft">
+            <img
+              rel="noreferrer"
+              className="entry-image attachment-post"
+              src="https://www.theshadestore.com/blog/wp-content/uploads/2021/08/Zebra-1.jpg"
+            />
+          </a>
+          <PostCardPContent
+            className={styles.postCardContent}
+            dangerouslySetInnerHTML={{
+              __html: sanitizeExcerpt(excerpt),
+            }}
+          />
+        </PostCardPictureExcerptContainer>
       )}
-    </div>
+    </article>
   );
 };
+
+const PostCardPictureExcerptContainer = styled.div`
+  display: flex;
+  .alignleft {
+    margin-right: 2%;
+    max-width: 315px;
+    img {
+      margin-bottom: 0;
+      width: auto;
+    }
+  }
+`;
+
+const PostCardPContent = styled.div`
+  p {
+    font-size: 14px;
+  }
+`;
 
 export default PostCard;

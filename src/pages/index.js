@@ -11,6 +11,8 @@ import Pagination from 'components/Pagination';
 
 import styles from 'styles/pages/Home.module.scss';
 
+import styled from 'styled-components';
+
 export default function Home({ posts, pagination }) {
   const { metadata = {} } = useSite();
   // const { title, description } = metadata;
@@ -37,29 +39,57 @@ export default function Home({ posts, pagination }) {
 
       <Section>
         <Container>
-          <h2 className="sr-only">Posts</h2>
-          <ul className={styles.posts}>
-            {posts.map((post) => {
-              return (
-                <li key={post.slug}>
-                  <PostCard post={post} />
-                </li>
-              );
-            })}
-          </ul>
-          {pagination && (
-            <Pagination
-              addCanonical={false}
-              currentPage={pagination?.currentPage}
-              pagesCount={pagination?.pagesCount}
-              basePath={pagination?.basePath}
-            />
-          )}
+          <LeftSide>
+            <h2 className="sr-only">Posts</h2>
+            <ul className={styles.posts}>
+              {posts.map((post) => {
+                return (
+                  <li key={post.slug}>
+                    <PostCard post={post} />
+                  </li>
+                );
+              })}
+            </ul>
+            {pagination && (
+              <Pagination
+                addCanonical={false}
+                currentPage={pagination?.currentPage}
+                pagesCount={pagination?.pagesCount}
+                basePath={pagination?.basePath}
+              />
+            )}
+          </LeftSide>
+          <RightSide>
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test test test test test test test test test test test test test
+            test test test test test test test test test{' '}
+          </RightSide>
         </Container>
       </Section>
     </Layout>
   );
 }
+
+const LeftSide = styled.div`
+  @media only screen and (min-width: 1200px) {
+    max-width: 680px;
+  }
+  display: block;
+  width: 100%;
+`;
+
+const RightSide = styled.div`
+  @media only screen and (min-width: 1200px) {
+    max-width: 300px;
+  }
+  display: block;
+  width: 100%;
+`;
 
 export async function getStaticProps() {
   const { posts, pagination } = await getPaginatedPosts();

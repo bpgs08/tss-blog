@@ -19,6 +19,8 @@ import Metadata from 'components/Metadata';
 
 import styles from 'styles/pages/Post.module.scss';
 
+import styled from 'styled-components';
+
 export default function Post({ post, socialImage, relatedPosts }) {
   const {
     title,
@@ -99,7 +101,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
       <Content>
         <Section>
           <Container>
-            <div
+            <ContentContainer
               className={styles.content}
               dangerouslySetInnerHTML={{
                 __html: content,
@@ -140,6 +142,12 @@ export default function Post({ post, socialImage, relatedPosts }) {
     </Layout>
   );
 }
+
+const ContentContainer = styled.div`
+  img {
+    height: auto;
+  }
+`;
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
