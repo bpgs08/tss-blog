@@ -9,6 +9,8 @@ import styles from './PostCard.module.scss';
 
 import styled from 'styled-components';
 
+import Image from 'next/image';
+
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
@@ -49,10 +51,16 @@ const PostCard = ({ post, options = {} }) => {
       {excerpt && (
         <PostCardPictureExcerptContainer>
           <a className="alignleft">
-            <img
+            <Image
               rel="noreferrer"
               className="entry-image attachment-post"
               src="https://www.theshadestore.com/blog/wp-content/uploads/2021/08/Zebra-1.jpg"
+              alt="Zebra"
+              width={680}
+              height={450}
+              layout="responsive"
+              placeholder="blur"
+              blurDataURL="https://www.theshadestore.com/blog/wp-content/uploads/2021/08/Zebra-1.jpg"
             />
           </a>
           <PostCardPContent
@@ -71,7 +79,7 @@ const PostCardPictureExcerptContainer = styled.div`
   display: flex;
   .alignleft {
     margin-right: 2%;
-    max-width: 315px;
+    min-width: 315px;
     img {
       margin-bottom: 0;
       width: auto;

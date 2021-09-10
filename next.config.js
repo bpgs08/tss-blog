@@ -27,6 +27,9 @@ module.exports = withPlugins([[indexSearch], [feed], [sitemap], [socialImages]],
 
     OG_IMAGE_DIRECTORY: '/images/og',
   },
+  images: {
+    domains: ['www.theshadestore.com'],
+  },
 });
 
 /**
