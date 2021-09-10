@@ -71,14 +71,26 @@ const PostCard = ({ post, options = {} }) => {
 };
 
 const PostCardPictureExcerptContainer = styled.div`
+  @media (min-width: 768px) {
+    flex-direction: row;
+    .alignleft {
+      margin-right: 2%;
+      min-width: 315px;
+      max-width: 315px;
+      img {
+        margin-bottom: 0;
+        width: auto;
+      }
+    }
+  }
+  flex-direction: column;
   display: flex;
   .alignleft {
-    margin-right: 2%;
-    min-width: 315px;
-    max-width: 315px;
+    max-width: unset;
+    width: 100%;
     img {
-      margin-bottom: 0;
-      width: auto;
+      margin: 0 auto;
+      display: block;
     }
   }
 `;
