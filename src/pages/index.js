@@ -39,41 +39,52 @@ export default function Home({ posts, pagination }) {
 
       <Section>
         <Container>
-          <LeftSide>
-            <h2 className="sr-only">Posts</h2>
-            <ul className={styles.posts}>
-              {posts.map((post) => {
-                return (
-                  <li key={post.slug}>
-                    <PostCard post={post} />
-                  </li>
-                );
-              })}
-            </ul>
-            {pagination && (
-              <Pagination
-                addCanonical={false}
-                currentPage={pagination?.currentPage}
-                pagesCount={pagination?.pagesCount}
-                basePath={pagination?.basePath}
-              />
-            )}
-          </LeftSide>
-          <RightSide>
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test test test test test test test test test test test test test
-            test test test test test test test test test{' '}
-          </RightSide>
+          <HomePageContainer>
+            <LeftSide>
+              <h2 className="sr-only">Posts</h2>
+              <ul className={styles.posts}>
+                {posts.map((post) => {
+                  return (
+                    <li key={post.slug}>
+                      <PostCard post={post} />
+                    </li>
+                  );
+                })}
+              </ul>
+              {pagination && (
+                <Pagination
+                  addCanonical={false}
+                  currentPage={pagination?.currentPage}
+                  pagesCount={pagination?.pagesCount}
+                  basePath={pagination?.basePath}
+                />
+              )}
+            </LeftSide>
+            <RightSide>
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test test test test test test test test test test test test test
+              test test test test test test test test test{' '}
+            </RightSide>
+          </HomePageContainer>
         </Container>
       </Section>
     </Layout>
   );
 }
+
+const HomePageContainer = styled.div`
+  @media only screen and (min-width: 1200px) {
+    flex-direction: row;
+  }
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const LeftSide = styled.div`
   @media only screen and (min-width: 1200px) {
