@@ -1,14 +1,35 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { Helmet } from 'react-helmet';
+import { ServerStyleSheet } from 'styled-components';
 
 // Via https://github.com/vercel/next.js/blob/canary/examples/with-react-helmet/pages/_document.js
 
 export default class MyDocument extends Document {
-  static async getInitialProps(...args) {
-    const documentProps = await super.getInitialProps(...args);
-    // see https://github.com/nfl/react-helmet#server-usage for more information
-    // 'head' was occupied by 'renderPage().head', we cannot use it
-    return { ...documentProps, helmet: Helmet.renderStatic() };
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          // eslint-disable-next-line react/display-name
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        helmet: Helmet.renderStatic(),
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   // should render on <html>
